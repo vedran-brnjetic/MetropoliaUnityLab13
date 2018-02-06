@@ -15,13 +15,21 @@ namespace Assets
         // Use this for initialization
         void Start ()
         {
+            //A Room
+            _room = (Room)A.Room().Named("Room");
+
+            //Players
             _player1 = (Player) A.Player().Named("Player 1");
             _player2 = (Player) A.Player().Named("Player 1");
+
+            //Items
             _hdd = (Item) An.Item().Named("HDD");
             _ram = (Item) An.Item().Named("RAM");
             _cpu = (Item) An.Item().Named("CPU");
-            _room = (Room) A.Room().Named("Room");
+            
+            //Add players to the room
             _room.AddPlayer(_player1).AddPlayer(_player2);
+            //Add items to the room 
             _room.AddItem(_cpu).AddItem(_hdd).AddItem(_ram);
 
 

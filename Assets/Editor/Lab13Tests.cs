@@ -71,12 +71,12 @@ namespace Assets
         [Test]
         public void Item_Gets_Added_To_Room()
         {
-            var player = (Player) A.Player().Named("Player 1");
+            var item = (Item) An.Item().Named("Item 1");
             var room = (Room) A.Room().Named("Room 1");
 
-            room.AddPlayer(player);
+            room.AddItem(item);
 
-            Assert.AreEqual(1, room.Players.Count);
+            Assert.AreEqual(1, room.Items.Count);
         }
 
     }

@@ -15,6 +15,7 @@ namespace Assets
         public Room(string name)
         {
             _players = new List<Player>();
+            _items = new List<Item>();
             _name = name;
         }
 
@@ -28,6 +29,10 @@ namespace Assets
         public List<Player> Players
         {
             get { return _players; }
+        }
+        public List<Item> Items
+        {
+            get { return _items; }
         }
 
         public Room AddPlayer(Player player)
