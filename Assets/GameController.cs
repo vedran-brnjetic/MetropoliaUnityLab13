@@ -15,18 +15,17 @@ namespace Assets
 
         private Room _room;
 
-
-
-        //Buttons
+        //Elements
         private Button _hddButton;
         private Button _cpuButton;
         private Button _ramButton;
-        
+        private Text _playerTurn;
+
         //UnityActions
         private UnityAction _hddButtonClick;
         private UnityAction _cpuButtonClick;
         private UnityAction _ramButtonClick;
-        private Text _playerTurn;
+        
 
         // Use this for initialization
         void Start ()
