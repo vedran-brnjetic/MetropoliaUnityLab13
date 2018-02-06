@@ -46,5 +46,23 @@ namespace Assets
             _items.Add(item);
             return this;
         }
+
+        public void RemoveItem(string itemName)
+        {
+            Item item = null;
+
+            foreach (var item1 in _items)
+            {
+                if (item1.Name == itemName)
+                {
+                    item = item1;
+
+                }
+            }
+            if (item != null)
+                _items.Remove(item);
+
+
+        }
     }
 }
