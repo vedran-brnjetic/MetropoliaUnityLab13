@@ -8,15 +8,22 @@ namespace Assets.Infrastructure
     public class RoomBuilder
     {
         private string _name = "Unset";
+        private List<Item> _items;
 
         public RoomBuilder()
         {
-
+            _items=new List<Item>();
         }
 
         public RoomBuilder Named(string name)
         {
             _name = name;
+            return this;
+        }
+
+        public RoomBuilder WithItems(List<Item> items)
+        {
+            _items = items;
             return this;
         }
 

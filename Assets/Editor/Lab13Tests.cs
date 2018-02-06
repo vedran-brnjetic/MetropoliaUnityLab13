@@ -42,6 +42,20 @@ namespace Assets
         }
 
         [Test]
+        public void Item_Gets_Removed_From_Room()
+        {
+            var room = (Room)A.Room().Named("Room").WithItems(
+                new List<Item>()
+                {
+                    An.Item().Named("Item")
+                });
+
+            room.RemoveItem("Item");
+
+            Assert.AreEqual(0, room.Items.Count);
+        }
+
+        [Test]
         public void RoomClassExists()
         {
             var room = (Room) A.Room().Named("Room1");
