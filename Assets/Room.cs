@@ -6,6 +6,7 @@ namespace Assets
     {
         private string _name;
         private List<Player> _players;
+        private List<Item> _items;
 
         public Room()
         {
@@ -29,9 +30,16 @@ namespace Assets
             get { return _players; }
         }
 
-        public void AddPlayer(Player player)
+        public Room AddPlayer(Player player)
         {
             _players.Add(player);
+            return this;
+        }
+
+        public Room AddItem(Item item)
+        {
+            _items.Add(item);
+            return this;
         }
     }
 }
