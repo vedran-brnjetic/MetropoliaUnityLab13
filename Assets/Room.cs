@@ -8,8 +8,13 @@ namespace Assets
         private List<Player> _players;
         private List<Item> _items;
 
+        private Player _currentPlayer;
+
         public Room()
         {
+            _players = new List<Player>();
+            _items = new List<Item>();
+
         }
 
         public Room(string name)
@@ -17,8 +22,23 @@ namespace Assets
             _players = new List<Player>();
             _items = new List<Item>();
             _name = name;
+            if (_players.Count > 0)
+            {
+                _currentPlayer = _players[0];
+            }
         }
 
+        public void ChangeActivePlayer()
+        {
+            if (_players.IndexOf(_currentPlayer) == _players.Count - 1)
+            {
+                _currentPlayer = _players[0];
+            }
+            else
+            {
+                _currentPlayer = _players[_players.IndexOf(_currentPlayer) + 1];
+            }
+        }
 
         public string Name
         {
@@ -38,7 +58,16 @@ namespace Assets
         public Room AddPlayer(Player player)
         {
             _players.Add(player);
+            if (_players.Count == 1)
+            {
+                _currentPlayer = _players[0];
+            }
             return this;
+        }
+
+        public Player CurrentPlayer
+        {
+            get { return _currentPlayer; }
         }
 
         public Room AddItem(Item item)
