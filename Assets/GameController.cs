@@ -26,6 +26,7 @@ namespace Assets
         private UnityAction _hddButtonClick;
         private UnityAction _cpuButtonClick;
         private UnityAction _ramButtonClick;
+        private Text _playerTurn;
 
         // Use this for initialization
         void Start ()
@@ -48,14 +49,16 @@ namespace Assets
             _room.AddItem(_cpu).AddItem(_hdd).AddItem(_ram);
 
 
-            //Bind the buttons
+            //Bind the components
             _cpuButton = GameObject.Find("btnCPU").GetComponent<Button>();
             _ramButton = GameObject.Find("btnRam").GetComponent<Button>();
             _hddButton = GameObject.Find("btnHDD").GetComponent<Button>();
+            _playerTurn = GameObject.Find("txtPlayerTurn").GetComponent<Text>();
+            _playerTurn.text = "Player:\n" + _player1.Name;
             //Add listeners
-            _cpuButton.onClick.AddListener(() => AddItemToInventory(_cpu));
-            _hddButton.onClick.AddListener(() => AddItemToInventory(_hdd));
-            _ramButton.onClick.AddListener(() => AddItemToInventory(_ram));
+            _cpuButton.onClick.AddListener(() => AddItemToInventory(_cpu,_cpuButton));
+            _hddButton.onClick.AddListener(() => AddItemToInventory(_hdd, _hddButton));
+            _ramButton.onClick.AddListener(() => AddItemToInventory(_ram, _ramButton));
 
 
 
@@ -66,16 +69,16 @@ namespace Assets
 		
         }
 
-        public void AddItemToInventory(Item item)
+        public void AddItemToInventory(Item item, Button button)
         {
             if (_room.Items.Contains(item))
             {
                 _room.CurrentPlayer.AddItemToInventory(item);
                 _room.RemoveItem(item.Name);
                 RefreshInventory();
+                button.interactable = false;
                 _room.ChangeActivePlayer();
-                Text PlayerTurn = GameObject.Find("txtPlayerTurn").GetComponent<Text>();
-                PlayerTurn.text = "Player:\n" + _room.CurrentPlayer.Name;
+                _playerTurn.text = "Player:\n" + _room.CurrentPlayer.Name;
             }
         }
 
